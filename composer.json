@@ -1,0 +1,26 @@
+{
+    "name": "cblink/user-active",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "牟勇",
+            "email": "my24251325@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cblink\\ActiveUser\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cblink\\ActiveUser\\ActiveUserServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "laravel/framework": "~5.5"
+    }
+}
