@@ -65,6 +65,9 @@ class Kernel extends ConsoleKernel
     {
         // 每日零时执行一次
         $schedule->command('cblink:sync-user-active-at')->dailyAt('00:00');
+        
+        // 每日四点执行一次，需要先执行 cblink:sync-user-active-at 再执行该命令
+        $schedule->command('cblink:record-user-active-logs')->dailyAt('04:00');
     }
 }
 ```

@@ -26,6 +26,24 @@ trait LastActiveAtHelper
         Redis::hSet($hash, $field, $now);
     }
 
+    public function recordUserActiveLog()
+    {
+        $yesterday = Carbon::yesterday();
+
+        $activeAtBetween = [
+            $yesterday->startOfDay(), $yesterday->endOfDay(),
+        ];
+
+        $users = static::whereBetween($activeAtBetween)->get();
+
+        foreach ($users as $user) {
+            $user->recordUserActiveLogs()->create([
+                'last_active_at' => $user->last_active_at,
+                'active_log_at' => $yesterday->startOfDay(),
+            ]);
+        }
+    }
+
     public function syncUserActiveAt()
     {
         $hash = $this->getHashFromDateString(Carbon::yesterday()->toDateString());
