@@ -14,8 +14,8 @@ class CreateRecordUserActiveLogsTable extends Migration
         Schema::create('record_user_active_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->timestamp('last_active_at')->index()->comment('当天最后活跃时间');
-            $table->timestamp('active_log_at')->index()->comment('活跃记录事件');
+            $table->timestamp('last_active_at')->index()->default(\DB::raw('CURRENT_TIMESTAMP')->comment('当天最后活跃时间');
+            $table->timestamp('active_log_at')->index()->default(\DB::raw('CURRENT_TIMESTAMP')->comment('活跃记录事件');
             $table->timestamps();
         });
     }
