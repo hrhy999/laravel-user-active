@@ -8,7 +8,18 @@
 ```shell
 $ composer require "cblink/user-active" -vvv
 ```
-
+or in composer.json
+```php
+"repositories": [
+        {
+              "type": "vcs",
+              "url": "https://github.com/hrhy999/laravel-user-active"
+        }
+],
+"require": {
+	"cblink/user-active":"dev-master",
+}
+```
 ## Useage
 
 use traits in User Model
