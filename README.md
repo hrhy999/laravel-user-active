@@ -72,9 +72,10 @@ class Kernel extends ConsoleKernel
 }
 ```
 change the user model in src/Commands/SyncUserActiveAt.php and Commands/RecordUserActiveLog.php to yours
+```php
 <?php
 namespace Cblink\ActiveUser\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Auth\User;
-
+```
 
