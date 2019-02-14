@@ -75,10 +75,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // 每日零时执行一次
-        $schedule->command('cblink:sync-user-active-at')->dailyAt('00:20')->timezone('Asia/Shanghai');
+        $schedule->command('cblink:sync-user-active-at')->dailyAt('00:20')->timezone('Asia/Shanghai')->withoutOverlapping();
         
         // 每日四点执行一次，需要先执行 cblink:sync-user-active-at 再执行该命令
-        $schedule->command('cblink:record-user-active-logs')->dailyAt('04:00')->timezone('Asia/Shanghai');
+        $schedule->command('cblink:record-user-active-logs')->dailyAt('04:00')->timezone('Asia/Shanghai')->withoutOverlapping();
     }
 }
 ```
