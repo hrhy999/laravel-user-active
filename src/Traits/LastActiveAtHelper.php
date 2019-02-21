@@ -34,7 +34,7 @@ trait LastActiveAtHelper
             $yesterday->startOfDay(), $yesterday->endOfDay(),
         ];
 
-        $users = static::whereBetween($activeAtBetween)->get();
+        $users = static::whereBetween($yesterday->startOfDay(), $yesterday->endOfDay())->get();
 
         foreach ($users as $user) {
             $user->recordUserActiveLogs()->create([
