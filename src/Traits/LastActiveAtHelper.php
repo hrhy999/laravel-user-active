@@ -14,16 +14,17 @@ trait LastActiveAtHelper
     public function recordLastActiveAt()
     {
         // Redis 哈希表的命名，如：cblink_last_active_at_2018-07-15
-        $hash = $this->getHashFromDateString(Carbon::now()->toDateString());
+        //$hash = $this->getHashFromDateString(Carbon::now()->toDateString());
 
         // 字段名称，如: user_1
-        $field = $this->getHashField();
+        //$field = $this->getHashField();
 
         // 当前时间，如 2018-07-15 03:56:51
         $now = Carbon::now()->toDateTimeString();
-
+        $this->last_active_at = $now;
+        $this->save();
         // 数据写入 Redis，字段已存在的会被更新
-        Redis::hSet($hash, $field, $now);
+        //Redis::hSet($hash, $field, $now);
     }
 
     public function recordUserActiveLog()
@@ -67,24 +68,24 @@ trait LastActiveAtHelper
         Redis::del($hash);
     }
 
-    public function getLastActiveAtAttribute($value)
-    {
+    //public function getLastActiveAtAttribute($value)
+    //{
         // Redis 哈希表的命名，如：cblink_last_active_at_2018-07-15
-        $hash = $this->getHashFromDateString(Carbon::now()->toDateString());
+        //$hash = $this->getHashFromDateString(Carbon::now()->toDateString());
 
         // 字段名称，如：user_1
-        $field = $this->getHashField();
+        //$field = $this->getHashField();
 
         // 三元运算符，优先选择 Redis 的数据，否则使用数据库中
-        $datetime = Redis::hGet($hash, $field) ?: $value;
+        //$datetime = Redis::hGet($hash, $field) ?: $value;
 
         // 如果存在的话，返回时间对应的 Carbon 实体
-        if ($datetime) {
-            return $datetime;
-        }
+        //if ($datetime) {
+         //   return $datetime;
+        //}
         // 否则使用用户注册时间
-        return $this->created_at->toDateTimeString();
-    }
+        //return $this->created_at->toDateTimeString();
+    //}
 
     public function getHashFromDateString($date)
     {
