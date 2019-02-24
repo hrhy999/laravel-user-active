@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
 }
 ```
 
-register corn in your console kernel
+register corn in your console kernel  不用redis了，就不用定时任务了
 ```php
 <?php
 
